@@ -33,7 +33,7 @@
     authabort [<nick>]: Aborts auth in progress\n\
     genkey [abort|<accountname>]: Generates a new key\n\
     set [<setting>]: Changes settings, run without args for current values\n\
-	status [<nick>]: Check OTR chat status"
+    status [<nick>]: Check OTR chat status"
 
 #define MAX_FORMAT_PARAMS 10
 
