@@ -314,7 +314,7 @@ int otr_getstatus(IRC_CTX *ircctx, const char *nick)
 	default:
 		otr_logst(
 			MSGLEVEL_CRAP,
-			"BUG Found! Please write us a mail and describe how you got here");
+			"BUG Found!");
 		return IO_ST_UNKNOWN;
 	}
 }

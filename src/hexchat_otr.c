@@ -84,12 +84,19 @@ static int cmd_otr (char *word[], char *word_eol[], void *userdata)
 		return HEXCHAT_EAT_ALL;
 	}
 
+	if (strcmp (cmd, "status") == 0)
+	{
+		otr_auth (ircctx, target, NULL, NULL, word_eol[3]);
+
+		otr_getstatus(ircctx, target); //no return - maybe use TXT_CMD commands to display otr_noticest
+	}
+
 	if (strcmp (cmd, "debug") == 0)
 	{
 		debug = !debug;
 		otr_noticest (debug ? TXT_CMD_DEBUG_ON : TXT_CMD_DEBUG_OFF);
 	}
-	
+	/*
 	if (strcmp (cmd, "verbose") == 0)
 	{
         if (!word[3] || !*word[3])
@@ -113,6 +120,7 @@ static int cmd_otr (char *word[], char *word_eol[], void *userdata)
 		  }
 		}
 	}
+	*/
 	else if (strcmp (cmd, "start") == 0 || strcmp (cmd, "init") == 0)
 	{
 		cmd_start (target);
