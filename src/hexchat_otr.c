@@ -86,7 +86,27 @@ static int cmd_otr (char *word[], char *word_eol[], void *userdata)
 
 	if (strcmp (cmd, "status") == 0)
 	{
-		otr_getstatus(ircctx, target); //no return - maybe use TXT_CMD commands to display otr_noticest
+		int lstatus = otr_getstatus(ircctx, target); //no return - maybe use TXT_CMD commands to display otr_noticest
+		switch (lstatus)
+		{
+			case IO_ST_PLAINTEXT: hexchat_print (ph, "Chat is on Plain Text! \n");
+				break;
+			case IO_ST_FINISHED: hexchat_print (ph, "OTR Chat is finished by the other side \n");
+				break;
+			case IO_ST_SMP_INCOMING: hexchat_print (ph, "OTR test incomming? \n");
+				break;
+			case IO_ST_SMP_OUTGOING: hexchat_print (ph, "OTR test outgoing? \n");
+				break;
+			case IO_ST_UNKNOWN: hexchat_print (ph, "OTR Chat have an unknown status \n");
+				break;
+			case IO_ST_UNTRUSTED: hexchat_print (ph, "OTR Chat is authenticated but untrusted \n");
+				break;
+			case IO_ST_TRUST_MANUAL: hexchat_print (ph, "OTR Chat is manually authenticated \n");
+				break;
+			case IO_ST_TRUST_SMP: hexchat_print (ph, "OTR Chat is authenticated by SMP\n");
+				break;
+		}
+
 	}
 	else if (strcmp (cmd, "debug") == 0)
 	{
