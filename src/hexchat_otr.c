@@ -16,6 +16,11 @@
 #include "otr.h"
 
 int debug = 0;
+//0 - no verbose
+//1 - simple verbose
+//2 - full verbose
+int verbose = 0;
+
 hexchat_plugin *ph;
 static GRegex *regex_nickignore = NULL;
 
@@ -83,6 +88,30 @@ static int cmd_otr (char *word[], char *word_eol[], void *userdata)
 	{
 		debug = !debug;
 		otr_noticest (debug ? TXT_CMD_DEBUG_ON : TXT_CMD_DEBUG_OFF);
+	}
+	
+	if (strcmp (cmd, "verbose") == 0)
+	{
+        if (!word[3] || !*word[3])
+		  otr_noticest (TXT_CMD_VERBOSE);
+		else
+		{
+		  if (strcmp (word[3], "0") == 0)
+		  {
+		  	verbose = 0;
+		    otr_noticest (TXT_CMD_VERBOSE_0);
+		  }
+		  else if (strcmp (word[3], "1") == 0)
+		  {
+		  	verbose = 1;
+		    otr_noticest (TXT_CMD_VERBOSE_1);
+		  }
+		  else if (strcmp (word[3], "2") == 0)
+		  {
+		  	verbose = 1;
+		    otr_noticest (TXT_CMD_VERBOSE_2);
+		  }
+		}
 	}
 	else if (strcmp (cmd, "start") == 0 || strcmp (cmd, "init") == 0)
 	{

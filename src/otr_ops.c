@@ -121,8 +121,7 @@ static void ops_handle_msg_event(void *opdata, OtrlMessageEvent msg_event,
 	IRC_CTX *server = opdata;
 	char *username = context->username;
 
-	otr_debug (server, username,
-		  TXT_OPS_HANDLE_MSG, otr_msg_event_txt[msg_event], message);
+	otr_debug (server, username, TXT_OPS_HANDLE_MSG, otr_msg_event_txt[msg_event], message);
 }
 
 /*

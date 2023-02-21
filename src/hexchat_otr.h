@@ -32,7 +32,8 @@
     authq [<nick>] <question> <answer>: Auths a user via question\n\
     authabort [<nick>]: Aborts auth in progress\n\
     genkey [abort|<accountname>]: Generates a new key\n\
-    set [<setting>]: Changes settings, run without args for current values"
+    set [<setting>]: Changes settings, run without args for current values\n\
+	status [<nick>]: Check OTR chat status"
 
 #define MAX_FORMAT_PARAMS 10
 
@@ -84,6 +85,12 @@ void printformat (IRC_CTX *ircctx, const char *nick, MessageLevel lvl, int fnum,
 #define otr_debug(server, nick, formatnum, ...)                                  \
 	{                                                                            \
 		if (debug)                                                               \
+			printformat (server, nick, MSGLEVEL_MSGS, formatnum, ##__VA_ARGS__); \
+	}
+
+#define otr_verbose(server, nick, formatnum, ...)                                \
+	{                                                                            \
+		if (verbose)                                                             \
 			printformat (server, nick, MSGLEVEL_MSGS, formatnum, ##__VA_ARGS__); \
 	}
 #define IRCCTX_DUP(ircctx) g_memdup (ircctx, sizeof(IRC_CTX));

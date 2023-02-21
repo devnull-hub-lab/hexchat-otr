@@ -658,8 +658,7 @@ char *otr_receive (IRC_CTX *ircctx, const char *msg, const char *from)
 		if ((strlen (msg) > OTR_MAX_MSG_SIZE) && (msg[strlen (msg) - 1] != '.') && (msg[strlen (msg) - 1] != ','))
 			return NULL;
 
-		otr_debug (ircctx, from, TXT_RECEIVE_DEQUEUED,
-				   strlen (coi->msgqueue));
+		otr_debug (ircctx, from, TXT_RECEIVE_DEQUEUED, strlen (coi->msgqueue));
 
 		msg = coi->msgqueue;
 		coi->msgqueue = NULL;
@@ -702,8 +701,7 @@ char *otr_receive (IRC_CTX *ircctx, const char *msg, const char *from)
 
 	if (ignore_message)
 	{
-		otr_debug (ircctx, from,
-				   TXT_RECEIVE_IGNORE, strlen (msg), accname, from, msg);
+		otr_debug (ircctx, from, TXT_RECEIVE_IGNORE, strlen (msg), accname, from, msg);
 		return NULL;
 	}
 
